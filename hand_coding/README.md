@@ -1,5 +1,9 @@
 #손코딩 뇌컴파일 눈디버깅
 
+2015/02/04 Codeforces Problem
+* http://codeforces.com/contest/505/problem/A#
+* http://codeforces.com/problemset/problem/500/C
+
 2015/01/28 
 * Topcoder latest SRM DIV2
 
