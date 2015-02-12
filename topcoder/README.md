@@ -7,7 +7,7 @@
 ### 5장 전체탐색
   1. InterestingParty SRM494 Div.2 Level.1
   2. Cryptography SRM480 Div.2 Level.1
-  3. InterestingDigits SRM150 Div.2 Level.1
+  3. InterestingDigits SRM150 Div.2 Level.2
   4. ThePalindrome SRM428 Div.2 Level.1
   5. FriendScore SRM436 Div.2 level.1
   6. 다양한 형태의 전체 탐색 
