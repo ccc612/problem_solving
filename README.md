@@ -7,6 +7,8 @@ save codes for problem solveing (e.g topcoder, leetcode, algospot ...)
 * algospot : https://algospot.com/
 * code forces : http://codeforces.com/
 * code chef : http://www.codechef.com/
+* codility : https://codility.com/
+* careercup : http://www.careercup.com/
 
 # reference 
 * Topcoder SRM tutirial : https://algospot.com/forum/read/203/
