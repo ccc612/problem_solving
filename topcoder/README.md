@@ -41,8 +41,21 @@
   9. HamiltonPath SRM452 Div.2 Level.3 
 
 ### 9장 응용문제
+  1. BinaryFlips SRM443 Div.1 Level.2
+  2. CantorDust Member Beta Div.1 Level.2
+  3. NotTwo SRM452 Div.1 Level.1
+  4. CutSticks SRM456 Div.1 Level.2 / Div.2 Level.3
+  5. InfinitySequence2 SRM413 Div.1 Level.2
+  6. FloorBoards SRM383 Div.1 Level.2
 
-### 10장 그래프 문제
+### 10장 그래프 문제 (문제를 풀지는 않고 이론 및 예제 설명)
+  1. 연결판정
+  2. 유향 그래프와 무향 그래프
+  3. 가중 그래프
+  4. 다익스트라 알고리즘
+  5. 최소 신장 트리
+  6. 변에 다양한 정보가 있는 그래프
 
-### 11장 수학문제
-
+### 11장 수학문제 (문제를 풀지는 않고 이론 및 예제 설명)
+  1. 소수
+  2. 최대공약수와 최소공배수
