@@ -3,6 +3,18 @@
 ***
 ### 2015
 
+...TODO - Fill here...
+
+04/08 Google Code Jam 2014 Qualification Round Problems
+* [Cookie Clicker Alpha](https://code.google.com/codejam/contest/2974486/dashboard#s=p1)
+* [Minesweeper Master](https://code.google.com/codejam/contest/2974486/dashboard#s=p2)
+
+03/25 Topcoder SRM 653 Div2 Problems
+* ???
+* [RockPaperScissorsMagicEasy](http://community.topcoder.com/stat?c=problem_statement&pm=13686)
+* [EXTRA Problem 1](http://codeforces.com/contest/527/problem/C)
+* [ExTRA Problem 2: Pallindrome](https://algospot.com/judge/problem/read/PALINDROMIZE)
+
 03/11 Topcoder SRM 652 Div2 Problems
 * [ThePermutationGameDiv2](http://community.topcoder.com/stat?c=problem_statement&pm=13679&rd=16316)
 * [NoRightTurnDiv2](http://community.topcoder.com/stat?c=problem_statement&pm=13644&rd=16316)
