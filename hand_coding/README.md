@@ -2,6 +2,10 @@
 
 ***
 ### 2015
+07/08 Topcoder SRM 655 Div2 Problems
+* [BichromeBoard](http://community.topcoder.com/stat?c=problem_statement&pm=13719&rd=16415)
+* [FoldingPaper2](http://community.topcoder.com/stat?c=problem_statement&pm=13721&rd=16415)
+
 07/01 Topcoder SRM #654 DIV2
 * SquareScoresDiv2 ( Topcoder SRM #654 Div2 - 250P )
 * OneEntrance ( Topcoder SRM #654 Div2 - 500P )
