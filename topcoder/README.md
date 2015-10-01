@@ -1,5 +1,5 @@
 # Topcoder 알고리즘 트레이닝
-(도서 링크)[http://www.hanbit.co.kr/book/look.html?isbn=978-89-6848-055-3]
+[도서 링크](http://www.hanbit.co.kr/book/look.html?isbn=978-89-6848-055-3)
 
 ### 4장 시뮬레이션
   1. KiwiJuiceEasy SRM478 Div.2 Level.1
