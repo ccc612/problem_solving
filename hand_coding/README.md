@@ -2,7 +2,27 @@
 
 ***
 ### 2015
-07/16 Topcoder Div2 Problems
+09/23 TopCoder Open Round or Project Euler Problems
+* [450P](http://community.topcoder.com/stat?c=problem_statement&pm=13746&rd=16434)
+* [1000P](http://community.topcoder.com/stat?c=problem_statement&pm=13717&rd=16433)
+
+09/09 TopCoder Open Round 1B, 1C Problems
+* ...
+
+09/02 TopCoder Open Round 1A, 1C Problems
+* [DevuAndPlantingTrees 250P](http://community.topcoder.com/stat?c=problem_statement&pm=13743&rd=16434)
+* [Revmatching 1000P](http://community.topcoder.com/stat?c=problem_statement&pm=13708&rd=16432)
+
+08/19 TopCoder Open Round 1B Problems
+* [TheNicePair 250P](http://community.topcoder.com/stat?c=problem_statement&pm=13715&rd=16433)
+
+08/05 TopCoder or Codeforces Div2 Problems
+* [Autogame 500P](http://community.topcoder.com/stat?c=problem_statement&pm=13707&rd=16432)
+
+07/22 TopCoder Open 2015 Round1A Problems
+* [TopCoder Open Algorithm Contest 250P (Simulars)](http://community.topcoder.com/stat?c=problem_statement&pm=13714&rd=16432)
+
+07/15 Topcoder Div2 Problems
 * [SRM 656 Div2 250P (CorruptedMessage)](http://community.topcoder.com/stat?c=problem_statement&pm=13748&rd=16416)
 * [SRM 659 Div2 500P (PublicTransit)](http://community.topcoder.com/stat?c=problem_statement&pm=13793&rd=16462)
 
