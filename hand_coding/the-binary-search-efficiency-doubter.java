@@ -6,7 +6,6 @@ public class Solution {
     public static long bsCount(long size) {
         long count = 0;
         long nextNodeCount = 1;
-        long i;
         for (i = 1; size > nextNodeCount; ++i) {
             count += (nextNodeCount * i);
             size -= nextNodeCount;
