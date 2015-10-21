@@ -21,7 +21,6 @@ public class Solution {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        long size = 0;
         for(int i = 1; scan.hasNextLong(); ++i) {
             System.out.println("Case " + i + ": " + bsCount(scan.nextLong()));
         }
