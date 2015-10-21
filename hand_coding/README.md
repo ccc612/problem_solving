@@ -2,6 +2,14 @@
 
 ***
 ### 2015
+10/21 2014 ACM-ICPC North Central Regional Problems
+* [the-binary-search-efficiency-doubter](https://www.hackerrank.com/contests/2014-icpc-north-central-regional-north-america-practice/challenges/the-binary-search-efficiency-doubter)
+* [restaurant-ratings](https://www.hackerrank.com/contests/2014-icpc-north-central-regional-north-america-practice/challenges/restaurant-ratings)
+
+10/14 Codeforces Round #325 Div2 Problems
+* [GennadyTheDentist](http://codeforces.com/contest/586/problem/C)
+* [PhillipAndTrains](http://codeforces.com/contest/586/problem/D)
+
 09/23 TopCoder Open Round or Project Euler Problems
 * [450P](http://community.topcoder.com/stat?c=problem_statement&pm=13746&rd=16434)
 * [1000P](http://community.topcoder.com/stat?c=problem_statement&pm=13717&rd=16433)
