@@ -6,14 +6,11 @@ public class Solution {
     public static long bsCount(long size) {
         long count = 0;
         long nextNodeCount = 1;
-        for (i = 1; size > nextNodeCount; ++i) {
-            count += (nextNodeCount * i);
+        for (int i = 1; size > 0; ++i) {
+            count += (Math.min(nextNodeCount,size) * i);
             size -= nextNodeCount;
             nextNodeCount *= 2;
         }
-        
-        if (size > 0)
-            count += (size * i);
         
         return count;
     }
