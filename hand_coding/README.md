@@ -1,5 +1,5 @@
 #손코딩 뇌컴파일 눈디버깅
-
+손코딩이란? => [Link](http://kwangswei.tistory.com/421)
 ***
 ### 2015
 10/21 2014 ACM-ICPC North Central Regional Problems
