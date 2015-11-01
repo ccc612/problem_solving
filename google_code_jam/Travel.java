@@ -2,6 +2,7 @@ import com.sun.tools.javac.util.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.lang.Integer;
 import java.util.*;
 
@@ -15,38 +16,41 @@ import java.util.*;
  *      * java의 set 사용법
  *      * java의 pair 사용법
  *      * java의 Integer.getInteger("XXX") 는 "XXX"에 해당하는 환경변수를 가져오는 함수라는 것
- *        (String => int해주는 함수인 줄 알고 한참 삽질)
- *     
+ *        (String => int 변환 함수인 줄 알고 한참 삽질)
+ *
  */
 
 public class Travel {
-    public static final String DIR = "/Users/mcjung/IntelliJProjects/problem_solving/google_code_jam/";
     public static final String SMALL_FILE = "A-small-practice.in";
     public static final String LARGE_FILE = "A-large-practice.in";
+    public static final String OUT_FILE = "Travel.out";
 
     int mCity = 0;
     int mRoad = 0;
-    Map mRoadCost = new HashMap<Pair<Integer,Integer>, List<Integer>>();
-    Map mRoadCity = new HashMap<Integer, Set<Integer>>();
+    HashMap<Pair<Integer,Integer>, List<Integer>> mRoadCost = new HashMap<>();
+    HashMap<Integer, HashSet<Integer>> mRoadCity = new HashMap<>();
     public Travel(int city, int road) {
         mCity = city;
         mRoad = road;
     }
+    
+    public static PrintWriter writer;
 
     public static void main(String args[]) {
         Scanner scan = null;
         try {
-            File file = new File(DIR + SMALL_FILE);
-            //file = new File(DIR + LARGE_FILE);
+            //File file = new File(DIR + SMALL_FILE);
+            File file = new File(LARGE_FILE);
 
             scan = new Scanner(file);
+            writer = new PrintWriter(OUT_FILE);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         int cases = Integer.parseInt(scan.nextLine().trim());
         for(int i = 1; i <= cases; ++i) {
-            System.out.print("Case #" + i + ":");
+            writer.print("Case #" + i + ":");
             String[] initValue = scan.nextLine().split(" ");
             assert initValue.length == 3;
             int quiz = Integer.parseInt(initValue[2]);
@@ -57,31 +61,64 @@ public class Travel {
             for(int j = 0; j < quiz; ++j) {
                 String[] quizValue = scan.nextLine().split(" ");
                 assert quizValue.length == 2;
-                System.out.print(" " + travel.solve(Integer.parseInt(quizValue[0]),
+                writer.print(" " + travel.solve(Integer.parseInt(quizValue[0]),
                                                     Integer.parseInt(quizValue[1])));
             }
-            System.out.println();
+            writer.println();
         }
     }
 
+    int mMinCost = Integer.MAX_VALUE;
     private int solve(int dest, int time) {
-        int minCost = Integer.MAX_VALUE;
-        //TODO solve problem
+        mMinCost = Integer.MAX_VALUE;
+
+        Set<Integer> notVisited = new HashSet<>();
+        for(int i = 2; i <= mCity; ++i)
+            notVisited.add(i);
+
+        solveRecursion(1, dest, time, 0, notVisited);
+        if (mMinCost == Integer.MAX_VALUE)
+            return -1;
+        else
+            return mMinCost;
+    }
+
+    private void solveRecursion(int current, int dest, int time, int cost, Set<Integer> notVisited) {
+        if (cost > mMinCost) return;
+        if (current == dest) {
+            mMinCost = Math.min(cost, mMinCost);
+            return;
+        }
+
+        HashSet<Integer> tmpSet = (HashSet<Integer>) mRoadCity.get(current).clone();
+        tmpSet.retainAll(notVisited);
+        if (tmpSet.isEmpty()) return;
+        for(int next: tmpSet) {
+            int curCost = mRoadCost.get(Pair.of(current, next)).get(time);
+            notVisited.remove(next);
+            solveRecursion(next, dest, (time + curCost) % 24, cost + curCost, notVisited);
+            notVisited.add(next);
+        }
     }
 
     private void parseRoads(Scanner scan) {
         for(int i=0; i < mRoad; ++i) {
-
             String[] keys = scan.nextLine().split(" ");
             int cityA = Integer.parseInt(keys[0]);
             int cityB = Integer.parseInt(keys[1]);
-            List<Integer> roadTime = new ArrayList<Integer>();
+            List<Integer> roadTime = new ArrayList<>();
             for(String time: scan.nextLine().split(" "))
                 roadTime.add(Integer.parseInt(time));
             mRoadCost.put(new Pair(cityA, cityB), roadTime);
             mRoadCost.put(new Pair(cityB, cityA), roadTime);
 
-            //TODO insert city into mRoadCity as a set
+            if (!mRoadCity.containsKey(cityA))
+                mRoadCity.put(cityA, new HashSet<Integer>());
+            ((Set<Integer>)mRoadCity.get(cityA)).add(cityB);
+
+            if (!mRoadCity.containsKey(cityB))
+                mRoadCity.put(cityB, new HashSet<Integer>());
+            ((Set<Integer>)mRoadCity.get(cityB)).add(cityA);
         }
     }
 }
