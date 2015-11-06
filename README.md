@@ -1,5 +1,5 @@
 # problem_solving
-save codes for problem solveing (e.g topcoder, leetcode, algospot ...)
+save codes for problem solving (e.g topcoder, leetcode, algospot ...)
 
 # problem solving sites
 * [Topcoder](http://www.topcoder.com/)
