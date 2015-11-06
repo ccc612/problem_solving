@@ -43,7 +43,6 @@ public class Tdetectived2
             }
         }
 
-        ;
         for (int i = 0; i < len; ++i) {
             if (visited[i] == false && curMax == score[i]) {
                 if (visitedDepth[i] == 0)
