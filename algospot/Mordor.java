@@ -12,8 +12,9 @@
  *              Segment tree - https://en.wikipedia.org/wiki/Segment_tree
  */
 
-import java.util.ArrayList;
+import java.lang.Integer;
 import java.util.Scanner;
+import java.util.Vector;
 
 
 // algospot은 제출하기 전에 class 이름을 Main 으로 변경 해야함
@@ -34,11 +35,14 @@ public class Mordor {
                 tags[i++] = Integer.parseInt(tag);
             }
 
+            Mordor mordor = new Mordor(tags);
+
             while (nProblem-- > 0) {
                 String[] range = scan.nextLine().split(" ");
                 int start = Integer.parseInt(range[0]);
                 int end = Integer.parseInt(range[1]);
-                System.out.println(solveNormal(tags, start, end));
+                //System.out.println(solveNormal(tags, start, end));
+                System.out.println(mordor.solveSegment(start, end));
             }
         }
     }
@@ -56,24 +60,129 @@ public class Mordor {
     }
 
 
-    //TODO implements MIN, MAX senment tree
-    class SegmentTree {
-        private ArrayList<Integer> mTree = null;
-        public SegmentTree(int size, int[] data) {
-            mTree = new ArrayList<>(size * 2);
-            int index = size + 1;
-            for(int d : data)
-                mTree.set(index++, d);
-            makeSegmentTree();
+    private SegmentTree tree;
+
+    public Mordor(int[] tags) {
+        tree = new SegmentTree(tags);
+    }
+
+    public int solveSegment(int start, int end) {
+        int min = tree.getMin(start, end);
+        int max = tree.getMax(start, end);
+        System.out.println("Min: " + min + ", Max: " + max);
+
+        return max - min;
+    }
+
+
+    public class SegmentTree {
+        private final Vector<Integer> mMinTree;
+        private final Vector<Integer> mMaxTree;
+        private final int size;
+
+        public SegmentTree(int[] data) {
+            int eSize = data.length;
+            size = eSize * 2;
+            mMinTree = new Vector<>(size);
+
+            for (int i = 0; i < eSize; ++i) {
+                mMinTree.add(0);
+            }
+            for(int d : data) {
+                mMinTree.add(d);
+            }
+
+            mMaxTree = (Vector<Integer>) mMinTree.clone();
+
+            makeMinMaxSegmentTree();
         }
 
-        private void makeSegmentTree() {
+        private int parent(int index) {
+            if (index >= size)
+                return -1;
 
+            int parentIndex = index / 2;
+            if (parentIndex == 0)
+                return -1;
+            return parentIndex;
         }
 
-        public int getRangeValue(int start, int end) {
-            return 0;
+        private boolean isLeaf(int index) {
+            return index >= (size / 2);
         }
 
+        private int checkChildIndex(int index) {
+            if (index >= size)
+                return -1;
+            if (isLeaf(index))
+                return -1;
+
+            return index * 2;
+        }
+
+        private int leftChild(int index) {
+            return checkChildIndex(index);
+        }
+
+        private int rightChild(int index) {
+            int childIndex = checkChildIndex(index);
+            return childIndex == -1? childIndex : childIndex + 1;
+        }
+
+        private void makeMinMaxSegmentTree() {
+            for (int i = (size / 2) - 1; i > 0; --i) {
+                mMinTree.set(i, Math.min(mMinTree.get(leftChild(i)),
+                                           mMinTree.get(rightChild(i))));
+
+                mMaxTree.set(i, Math.max(mMaxTree.get(leftChild(i)),
+                                         mMaxTree.get(rightChild(i))));
+            }
+        }
+
+        public int getMin(int start, int end) {
+            int left = (size / 2) + start;
+            int right = (size / 2) + end;
+
+            int leftMin = mMinTree.get(left);
+            int rightMin = mMinTree.get(right);
+
+            while (left < right) {
+                if (left % 2 == 1)
+                    leftMin = Math.min(leftMin, mMinTree.get(parent(left)));
+                else
+                    leftMin = mMinTree.get(parent(left));
+                left = parent(left) + 1;
+
+                if (right % 2 == 1)
+                    rightMin = mMinTree.get(parent(right));
+                else
+                    rightMin = Math.min(rightMin, mMinTree.get(parent(right)));
+                right = parent(right) - 1;
+            }
+            return Math.min(leftMin, rightMin);
+        }
+
+        public int getMax(int start, int end) {
+            int left = (size / 2) + start;
+            int right = (size / 2) + end;
+
+            int leftMax = mMaxTree.get(left);
+            int rightMax = mMaxTree.get(right);
+
+            while (left < right) {
+                if (left % 2 == 1)
+                    leftMax = Math.max(leftMax, mMaxTree.get(parent(left)));
+                else
+                    leftMax = mMaxTree.get(parent(left));
+                left = parent(left) + 1;
+
+                if (right % 2 == 1)
+                    rightMax = mMaxTree.get(parent(right));
+                else
+                    rightMax = Math.max(rightMax, mMaxTree.get(parent(right)));
+                right = parent(right) - 1;
+            }
+            return Math.max(leftMax, rightMax);
+        }
     }
 }
