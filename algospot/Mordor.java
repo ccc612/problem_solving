@@ -8,8 +8,7 @@
  *              최소값, 최대값 segment tree를 만들어서 각각 log N 만에 값을 구해 좀 더 빨리 풀리도록 할 예정이다.
  *              이 후 그냥 구현한 것과 속도를 비교해보자 (note: 그냥 구현은 5초 넘어감)
  *
- * Reference:
- *              Segment tree - https://en.wikipedia.org/wiki/Segment_tree
+ * Reference: Segment tree - https://en.wikipedia.org/wiki/Segment_tree
  */
 
 import java.lang.Integer;
@@ -41,7 +40,6 @@ public class Mordor {
                 String[] range = scan.nextLine().split(" ");
                 int start = Integer.parseInt(range[0]);
                 int end = Integer.parseInt(range[1]);
-                //System.out.println(solveNormal(tags, start, end));
                 System.out.println(mordor.solveSegment(start, end));
             }
         }
@@ -60,7 +58,7 @@ public class Mordor {
     }
 
 
-    private SegmentTree tree;
+    private final SegmentTree tree;
 
     public Mordor(int[] tags) {
         tree = new SegmentTree(tags);
@@ -69,7 +67,6 @@ public class Mordor {
     public int solveSegment(int start, int end) {
         int min = tree.getMin(start, end);
         int max = tree.getMax(start, end);
-        System.out.println("Min: " + min + ", Max: " + max);
 
         return max - min;
     }
@@ -147,17 +144,22 @@ public class Mordor {
             int rightMin = mMinTree.get(right);
 
             while (left < right) {
-                if (left % 2 == 1)
-                    leftMin = Math.min(leftMin, mMinTree.get(parent(left)));
-                else
+                if (left % 2 == 1) {
+                    leftMin = Math.min(leftMin, mMinTree.get(parent(left) + 1));
+                    left = parent(left) + 1;
+                }
+                else {
                     leftMin = mMinTree.get(parent(left));
-                left = parent(left) + 1;
+                    left = parent(left);
+                }
 
-                if (right % 2 == 1)
+                if (right % 2 == 1) {
                     rightMin = mMinTree.get(parent(right));
-                else
-                    rightMin = Math.min(rightMin, mMinTree.get(parent(right)));
-                right = parent(right) - 1;
+                    right = parent(right);
+                } else {
+                    rightMin = Math.min(rightMin, mMinTree.get(parent(right) - 1));
+                    right = parent(right) - 1;
+                }
             }
             return Math.min(leftMin, rightMin);
         }
@@ -170,17 +172,21 @@ public class Mordor {
             int rightMax = mMaxTree.get(right);
 
             while (left < right) {
-                if (left % 2 == 1)
-                    leftMax = Math.max(leftMax, mMaxTree.get(parent(left)));
-                else
+                if (left % 2 == 1) {
+                    leftMax = Math.max(leftMax, mMaxTree.get(parent(left) + 1));
+                    left = parent(left) + 1;
+                } else {
                     leftMax = mMaxTree.get(parent(left));
-                left = parent(left) + 1;
+                    left = parent(left);
+                }
 
-                if (right % 2 == 1)
+                if (right % 2 == 1) {
                     rightMax = mMaxTree.get(parent(right));
-                else
-                    rightMax = Math.max(rightMax, mMaxTree.get(parent(right)));
-                right = parent(right) - 1;
+                    right = parent(right);
+                } else {
+                    rightMax = Math.max(rightMax, mMaxTree.get(parent(right) - 1));
+                    right = parent(right) - 1;
+                }
             }
             return Math.max(leftMax, rightMax);
         }
