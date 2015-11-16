@@ -2,46 +2,50 @@
  * Problem Name: MORDOR
  * Problem Link: https://algospot.com/judge/problem/read/MORDOR
  * Solution Description:
- *              ±¸°£ÀÇ ÃÖ¼Ò°ª°ú ÃÖ´ë°ªÀ» ±¸ÇØ¼­ ±× Â÷ÀÌ¸¦ Ãâ·ÂÇÏ¸é µÇ´Â °£´ÜÇÑ ¹®Á¦ÀÌ´Ù.
- *              ±×·¯³ª ½Ã°£Á¦ÇÑÀÌ 5ÃÊÀÌ±â ¶§¹®¿¡ ÀÏ¹ÝÀûÀ¸·Î Ç®¸é ½Ã°£ ÃÊ°ú°¡ ³­´Ù
- *              ±×·¡¼­ ¾îÁ¦ aaa¿¡¼­ ¹è¿î ½ÅºñÇÑ ÀÚ·á±¸Á¶ segment tree¸¦ ±¸ÇöÇØ¼­ Ç®±â·Î Çß´Ù.
- *              ÃÖ¼Ò°ª, ÃÖ´ë°ª segment tree¸¦ ¸¸µé¾î¼­ °¢°¢ log N ¸¸¿¡ °ªÀ» ±¸ÇØ Á» ´õ »¡¸® Ç®¸®µµ·Ï ÇÒ ¿¹Á¤ÀÌ´Ù.
- *              ÀÌ ÈÄ ±×³É ±¸ÇöÇÑ °Í°ú ¼Óµµ¸¦ ºñ±³ÇØº¸ÀÚ (note: ±×³É ±¸ÇöÀº 5ÃÊ ³Ñ¾î°¨)
+ *              êµ¬ê°„ì˜ ìµœì†Œê°’ê³¼ ìµœëŒ€ê°’ì„ êµ¬í•´ì„œ ê·¸ ì°¨ì´ë¥¼ ì¶œë ¥í•˜ë©´ ë˜ëŠ” ê°„ë‹¨í•œ ë¬¸ì œì´ë‹¤.
+ *              ê·¸ëŸ¬ë‚˜ ì‹œê°„ì œí•œì´ 5ì´ˆì´ê¸° ë•Œë¬¸ì— ì¼ë°˜ì ìœ¼ë¡œ í’€ë©´ ì‹œê°„ ì´ˆê³¼ê°€ ë‚œë‹¤
+ *              ê·¸ëž˜ì„œ ì–´ì œ aaaì—ì„œ ë°°ìš´ ì‹ ë¹„í•œ ìžë£Œêµ¬ì¡° segment treeë¥¼ êµ¬í˜„í•´ì„œ í’€ê¸°ë¡œ í–ˆë‹¤.
+ *              ìµœì†Œê°’, ìµœëŒ€ê°’ segment treeë¥¼ ë§Œë“¤ì–´ì„œ ê°ê° log N ë§Œì— ê°’ì„ êµ¬í•´ ì¢€ ë” ë¹¨ë¦¬ í’€ë¦¬ë„ë¡ í•  ì˜ˆì •ì´ë‹¤.
+ *              ì´ í›„ ê·¸ëƒ¥ êµ¬í˜„í•œ ê²ƒê³¼ ì†ë„ë¥¼ ë¹„êµí•´ë³´ìž (note: ê·¸ëƒ¥ êµ¬í˜„ì€ 5ì´ˆ ë„˜ì–´ê°)
  *
  * Reference: Segment tree - https://en.wikipedia.org/wiki/Segment_tree
  */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.Integer;
-import java.util.Scanner;
-import java.util.Vector;
 
-
-// algospotÀº Á¦ÃâÇÏ±â Àü¿¡ class ÀÌ¸§À» Main À¸·Î º¯°æ ÇØ¾ßÇÔ
+// algospotì— commit í•˜ê¸°ìœ„í•´ì„œëŠ” Classì´ë¦„ì„ Mainìœ¼ë¡œ ë°”ê¾¸ì–´ì•¼ í•¨
 public class Mordor {
     public static void main(String args[]) {
-        Scanner scan = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int testCase = Integer.parseInt(scan.nextLine());
+        try {
+            int testCase = Integer.parseInt(reader.readLine());
 
-        while(testCase-- > 0) {
-            String[] caseStr = scan.nextLine().split(" ");
-            int nTag = Integer.parseInt(caseStr[0]);
-            int nProblem = Integer.parseInt(caseStr[1]);
+            while(testCase-- > 0) {
+                String[] caseStr = reader.readLine().split(" ");
+                int nTag = Integer.parseInt(caseStr[0]);
+                int nProblem = Integer.parseInt(caseStr[1]);
 
-            int[] tags = new int[nTag];
-            int i = 0;
-            for(String tag: scan.nextLine().split(" ")) {
-                tags[i++] = Integer.parseInt(tag);
+                int[] tags = new int[nTag];
+                int i = 0;
+                for (String tag : reader.readLine().split(" ")) {
+                    tags[i++] = Integer.parseInt(tag);
+                }
+
+                SolveMordor mordor = new SolveMordor(tags);
+
+                while (nProblem-- > 0) {
+                    String[] range = reader.readLine().split(" ");
+                    int start = Integer.parseInt(range[0]);
+                    int end = Integer.parseInt(range[1]);
+                    System.out.println(mordor.solveSegment(start, end));
+                }
             }
-
-            Mordor mordor = new Mordor(tags);
-
-            while (nProblem-- > 0) {
-                String[] range = scan.nextLine().split(" ");
-                int start = Integer.parseInt(range[0]);
-                int end = Integer.parseInt(range[1]);
-                System.out.println(mordor.solveSegment(start, end));
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -58,38 +62,33 @@ public class Mordor {
     }
 
 
-    private final SegmentTree tree;
+    static class SolveMordor {
+        private final SegmentTree tree;
 
-    public Mordor(int[] tags) {
-        tree = new SegmentTree(tags);
+        public SolveMordor(int[] tags) {
+            tree = new SegmentTree(tags);
+        }
+
+        public int solveSegment(int start, int end) {
+            return tree.getValue(start, end);
+        }
     }
 
-    public int solveSegment(int start, int end) {
-        int min = tree.getMin(start, end);
-        int max = tree.getMax(start, end);
-
-        return max - min;
-    }
-
-
-    public class SegmentTree {
-        private final Vector<Integer> mMinTree;
-        private final Vector<Integer> mMaxTree;
+    public static class SegmentTree {
+        private static final int[] mMinTree = new int[100000 * 2];
+        private static final int[] mMaxTree = new int[100000 * 2];
         private final int size;
 
         public SegmentTree(int[] data) {
             int eSize = data.length;
             size = eSize * 2;
-            mMinTree = new Vector<>(size);
 
-            for (int i = 0; i < eSize; ++i) {
-                mMinTree.add(0);
+            int i = eSize;
+            for(int d: data) {
+                mMinTree[eSize] = d;
+                mMaxTree[eSize] = d;
+                eSize++;
             }
-            for(int d : data) {
-                mMinTree.add(d);
-            }
-
-            mMaxTree = (Vector<Integer>) mMinTree.clone();
 
             makeMinMaxSegmentTree();
         }
@@ -128,67 +127,49 @@ public class Mordor {
 
         private void makeMinMaxSegmentTree() {
             for (int i = (size / 2) - 1; i > 0; --i) {
-                mMinTree.set(i, Math.min(mMinTree.get(leftChild(i)),
-                                           mMinTree.get(rightChild(i))));
+                mMinTree[i] = Math.min(mMinTree[leftChild(i)],
+                                           mMinTree[rightChild(i)]);
 
-                mMaxTree.set(i, Math.max(mMaxTree.get(leftChild(i)),
-                                         mMaxTree.get(rightChild(i))));
+                mMaxTree[i] = Math.max(mMaxTree[leftChild(i)],
+                                         mMaxTree[rightChild(i)]);
             }
         }
 
-        public int getMin(int start, int end) {
+        public int getValue(int start, int end) {
             int left = (size / 2) + start;
             int right = (size / 2) + end;
 
-            int leftMin = mMinTree.get(left);
-            int rightMin = mMinTree.get(right);
+            int leftMin = mMinTree[left];
+            int rightMin = mMinTree[right];
+
+            int leftMax = mMaxTree[left];
+            int rightMax = mMaxTree[right];
 
             while (left < right) {
                 if (left % 2 == 1) {
-                    leftMin = Math.min(leftMin, mMinTree.get(parent(left) + 1));
+                    leftMin = Math.min(leftMin, mMinTree[parent(left) + 1]);
+                    leftMax = Math.max(leftMax, mMaxTree[parent(left) + 1]);
+
                     left = parent(left) + 1;
                 }
                 else {
-                    leftMin = mMinTree.get(parent(left));
+                    leftMin = mMinTree[parent(left)];
+                    leftMax = mMaxTree[parent(left)];
+
                     left = parent(left);
                 }
 
                 if (right % 2 == 1) {
-                    rightMin = mMinTree.get(parent(right));
+                    rightMin = mMinTree[parent(right)];
+                    rightMax = mMaxTree[parent(right)];
                     right = parent(right);
                 } else {
-                    rightMin = Math.min(rightMin, mMinTree.get(parent(right) - 1));
+                    rightMin = Math.min(rightMin, mMinTree[parent(right) - 1]);
+                    rightMax = Math.max(rightMax, mMaxTree[parent(right) - 1]);
                     right = parent(right) - 1;
                 }
             }
-            return Math.min(leftMin, rightMin);
-        }
-
-        public int getMax(int start, int end) {
-            int left = (size / 2) + start;
-            int right = (size / 2) + end;
-
-            int leftMax = mMaxTree.get(left);
-            int rightMax = mMaxTree.get(right);
-
-            while (left < right) {
-                if (left % 2 == 1) {
-                    leftMax = Math.max(leftMax, mMaxTree.get(parent(left) + 1));
-                    left = parent(left) + 1;
-                } else {
-                    leftMax = mMaxTree.get(parent(left));
-                    left = parent(left);
-                }
-
-                if (right % 2 == 1) {
-                    rightMax = mMaxTree.get(parent(right));
-                    right = parent(right);
-                } else {
-                    rightMax = Math.max(rightMax, mMaxTree.get(parent(right) - 1));
-                    right = parent(right) - 1;
-                }
-            }
-            return Math.max(leftMax, rightMax);
+            return Math.max(leftMax, rightMax) - Math.min(leftMin, rightMin);
         }
     }
 }
