@@ -12,5 +12,5 @@ save codes for problem solving (e.g topcoder, leetcode, algospot ...)
 * [hackerrank](https://www.hackerrank.com/)
 
 # reference 
-* Topcoder SRM tutirial : https://algospot.com/forum/read/203/
+* Topcoder SRM tutorial : https://algospot.com/forum/read/203/
 * 알고리즘 문제 해결 전략 사이트 : http://book.algospot.com/
